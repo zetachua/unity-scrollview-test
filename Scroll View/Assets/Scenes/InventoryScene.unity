@@ -490,8 +490,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: 50}
-  m_SizeDelta: {x: 250, y: 300}
+  m_AnchoredPosition: {x: 310, y: 100}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551457304
 MonoBehaviour:
@@ -551,8 +551,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   contentHolder: {fileID: 1593921084}
   verticalLayoutGroup: {fileID: 1593921086}
   inventoryRow: {fileID: 2416259030942289835, guid: 640bce65542764fd5ab07fb2d2a0ba6c, type: 3}
-  numRows: 10
+  numRows: 20
   inventoryRows: []
 --- !u!114 &1729351182
 MonoBehaviour:
@@ -1536,6 +1536,9 @@ MonoBehaviour:
   viewPort: {fileID: 777475492}
   scrollRect: {fileID: 1729351178}
   inventoryManager: {fileID: 1729351181}
+  rowPool: []
+  inventoryRowPrefab: {fileID: 5968815572479420485, guid: 640bce65542764fd5ab07fb2d2a0ba6c, type: 3}
+  verticalLayoutGroup: {fileID: 1593921086}
 --- !u!1 &1857200380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,8 +1699,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: -160}
-  m_SizeDelta: {x: 250, y: 100}
+  m_AnchoredPosition: {x: 310, y: -125}
+  m_SizeDelta: {x: 250, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035487110
 MonoBehaviour:
@@ -1719,8 +1722,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Note: Content height is set by the InventoryManger. All inventory items
-    and rows are the same height.'
+  m_text: 'Note: Content height is set by the InventoryManger. All inventory items/rows
+    are the same height.
+
+
+    Hint: Use Coroutines to delay execution to the next
+    frame to allow the LayoutGroup to apply calculations. Refer to the code in InventoryManager'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

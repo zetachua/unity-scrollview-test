@@ -1,6 +1,5 @@
-using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class OptimizeScroll : MonoBehaviour
@@ -9,14 +8,15 @@ public class OptimizeScroll : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     
     private const float ItemHeight = 110f; // includes spacing of 10
+    private const float ItemSpacing = 10f;
     
     [SerializeField] private InventoryManager inventoryManager;
-
+    
     private void OnEnable()
     {
         scrollRect.onValueChanged.AddListener(HandleScroll);
     }
-
+    
     private void HandleScroll(Vector2 value)
     {
         UpdateVisibleItems();
