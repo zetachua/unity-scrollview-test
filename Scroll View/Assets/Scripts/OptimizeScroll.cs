@@ -10,8 +10,8 @@ public class OptimizeScroll : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
 
     // Constants
-    private const float ItemHeight = 110f; // includes spacing of 10
-    private const float ItemSpacing = 10f;
+    public const float ItemHeight = 110f; // includes spacing of 10
+    public const float ItemSpacing = 10f;
 
     // Shortcuts / Accessors
     private int NumRows => inventoryManager.NumRows;
@@ -22,7 +22,7 @@ public class OptimizeScroll : MonoBehaviour
 
     // Initalizations
     private int _firstVisibleRowIndex = 0; // Track first visible row
-    
+
     private void OnEnable()
     {
         scrollRect.onValueChanged.AddListener(HandleScroll);
@@ -117,11 +117,12 @@ public class OptimizeScroll : MonoBehaviour
         return true;
     }
 
-    private void RepositionRow(InventoryRow row, int index)
+    public static void RepositionRow(InventoryRow row, int index)
     {
         RectTransform rt = row.GetComponent<RectTransform>();
         float originalX = rt.anchoredPosition.x;
-        float posY = - (index * ItemHeight) - ItemSpacing;         // Adjust posY of item 
-        rt.anchoredPosition = new Vector2(originalX, posY);        // eg - (6*110) -10 = -670 
+        float posY = - index * (ItemHeight + ItemSpacing);         // Adjust posY of item 
+        rt.anchoredPosition = new Vector2(originalX, posY);        // eg - 6*(110+10) = -670 
+        Debug.Log("posY"+ posY);
     }
 }

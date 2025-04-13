@@ -1353,28 +1353,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Improvements made:
-
-
-    1. Reuse rows by Object pooling: Create a pool
-    of reusable row GameObjects (just enough to fill the viewport + buffer)
-
-
-    2.
-    Reposition & update these rows as the user scrolls
-
-
-    3. Dynamic Width of
-    scroll based on number of items in row (try replacing the prefabs with the ones
-    i created)
-
-
-    4. Created Alternative Method [InventoryManagerInstantiateAll.cs]
-    : Enable rows within visible viewport and disable rows before and after visible
-    viewport
-
-    * You can test it by enabling it in the scroll view object, and
-    disable the optimizescroll and inventorymanager '
+  m_text: "Improvements:\n\n1. Object Pooling for Row Reuse\nRows are now efficiently
+    recycled using object pooling. Only enough rows to fill the viewport (plus a
+    small buffer) are created. As the user scrolls, these rows are repositioned and
+    updated with new data.\n\n2. Programmatic Row Height Adjustment\nRow height can
+    now be adjusted directly via script, allowing for flexible UI customization.\n\n3.
+    Dynamic Row Width\nThe scroll view automatically adjusts its width based on the
+    number of items per row. You can test this by swapping in prefabs with different
+    item counts.\n\n4. Alternative Implementation: InventoryManagerInstantiateAll.cs\nThis
+    simpler version activates only the rows visible in the viewport and disables
+    the rest.\nTo test it:\n\u2022 Enable InventoryManagerInstantiateAll on the ScrollView
+    GameObject\n\u2022 Disable OptimizeScroll and the default InventoryManager\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1439,7 +1428,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -226.96625, z: 10.440796, w: 0}
+  m_margin: {x: 0, y: -226.96625, z: -152.70337, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1499,6 +1488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593921084}
   - component: {fileID: 1593921086}
+  - component: {fileID: 1593921087}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1551,6 +1541,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &1593921087
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593921083}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1729351176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentHolder: {fileID: 1593921084}
   verticalLayoutGroup: {fileID: 1593921086}
-  inventoryRow: {fileID: 6769645947496131951, guid: 1726128216c304caa854f1ae87f8c7ed, type: 3}
+  inventoryRow: {fileID: 8781111695360798382, guid: 11fc001c8e06843cd88fd429d2304b0a, type: 3}
   scrollRect: {fileID: 1729351178}
   numRows: 10
   inventoryRows: []

@@ -18,50 +18,71 @@ public class InventoryManager : MonoBehaviour
 
     // Constants
     private const int BufferRows = 4;
+    private float ItemHeight=> OptimizeScroll.ItemHeight;
+    private float ItemSpacing=> OptimizeScroll.ItemSpacing;
 
     // Initalizations
     private float _rowHeight =0;
     private float _rowWidth =0;
-    private Vector2 _viewportSize;
+    private float _scrollRectSize;
 
     private void Start()
     {
         _rowHeight = inventoryRow.GetRowHeight();
         _rowWidth=inventoryRow.GetRowWidth();
-        _viewportSize = scrollRect.viewport.rect.size;
-        VisibleRows = Mathf.FloorToInt(_viewportSize.y / (_rowHeight))+BufferRows;
-        
-        PopulateInventoryDisplay();
+        _scrollRectSize = scrollRect.GetComponent<RectTransform>().rect.height;
+        VisibleRows = Mathf.FloorToInt(_scrollRectSize / (_rowHeight + ItemSpacing))+ BufferRows;
+        Debug.Log(_scrollRectSize+ " "+_rowHeight);
+        SetContentHeight();
         ResizeScrollViewToFitRow();
+        inventoryRow.SetRowHeight(ItemHeight-ItemSpacing); 
+        PopulateInventoryDisplay();
 
         Debug.Log($"Row width (used for Scroll View sizing): {_rowWidth} and VisibleRows: {VisibleRows}");
     }
 
     // Instantiate smaller num of rows cuz of row reuse to save memory
     private void PopulateInventoryDisplay()
-    {
-        // Changed NumRows to VisibleRows (smaller num of rows)
-        for (var i = 0; i < VisibleRows; i++)
+    {        
+        contentHolder.GetComponent<CanvasGroup>().alpha = 0f;  // Set opacity to 0 (fully transparent)
+
+        // Calculate which row index is currently at the top of the scroll view
+        int startIndex = Mathf.FloorToInt(contentHolder.anchoredPosition.y / (ItemHeight + ItemSpacing));
+
+        for (int i = 0; i < VisibleRows; i++)
         {
+            int rowIndex = startIndex + i;
             var row = Instantiate(inventoryRow, contentHolder);
-            row.Init(i);
-            row.name = $"Row {i}";
+            row.Init(rowIndex);
+            row.name = $"Row {rowIndex}";
             rowPool.Add(row);
         }
-        SetContentHeight();
     }
 
+    // Changed based on number of items it will update the contentheight
     private void SetContentHeight()
     {
-        var contentHeight = verticalLayoutGroup.spacing * NumRows + 10f;
+        // var contentHeight = verticalLayoutGroup.spacing * NumRows + 10f;
+        float contentHeight = (ItemHeight + ItemSpacing) * NumRows; // 10f is spacing
         contentHolder.sizeDelta = new Vector2(0f, contentHeight);
         StartCoroutine(DisableLayoutGroupNextFrame());
     }
-
     private IEnumerator DisableLayoutGroupNextFrame()
     {
-        yield return null;
+        yield return new WaitForEndOfFrame();
         verticalLayoutGroup.enabled = false;
+        RepositionRows();
+        contentHolder.GetComponent<CanvasGroup>().alpha = 1f;  // Set opacity to 0 (fully transparent)
+    }
+
+    private void RepositionRows()
+    {
+        for (int i = 0; i < rowPool.Count; i++)
+        {
+            var row = rowPool[i];
+            OptimizeScroll.RepositionRow(row, i);
+            Debug.Log($"Reposition Row {i} to posY: {row.GetComponent<RectTransform>().anchoredPosition.y}");
+        }
     }
 
     // Dynamically reduce scroll view width as item count increases, with trial-based tuning
@@ -80,4 +101,5 @@ public class InventoryManager : MonoBehaviour
             Debug.Log($"ScrollView resized to width: {width}");
         }
     }
+
 }
