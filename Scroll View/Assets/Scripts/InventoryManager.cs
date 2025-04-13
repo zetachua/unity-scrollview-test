@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     [System.NonSerialized] public int VisibleRows;
 
     // Constants
-    private const int BufferRows = 4;
+    private const int BufferRows = 1;
     private float ItemHeight=> OptimizeScroll.ItemHeight;
     private float ItemSpacing=> OptimizeScroll.ItemSpacing;
 
