@@ -81,7 +81,6 @@ public class InventoryManager : MonoBehaviour
         {
             var row = rowPool[i];
             OptimizeScroll.RepositionRow(row, i);
-            Debug.Log($"Reposition Row {i} to posY: {row.GetComponent<RectTransform>().anchoredPosition.y}");
         }
     }
 

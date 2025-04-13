@@ -123,6 +123,5 @@ public class OptimizeScroll : MonoBehaviour
         float originalX = rt.anchoredPosition.x;
         float posY = - index * (ItemHeight + ItemSpacing);         // Adjust posY of item 
         rt.anchoredPosition = new Vector2(originalX, posY);        // eg - 6*(110+10) = -670 
-        Debug.Log("posY"+ posY);
     }
 }
