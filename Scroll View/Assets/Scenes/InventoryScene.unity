@@ -1713,8 +1713,8 @@ MonoBehaviour:
   verticalLayoutGroup: {fileID: 1593921086}
   inventoryRow: {fileID: 8781111695360798382, guid: 11fc001c8e06843cd88fd429d2304b0a, type: 3}
   scrollRect: {fileID: 1729351178}
-  numRows: 10
   inventoryRows: []
+  numRows: 10
 --- !u!1 &1857200380
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,8 +31,9 @@ public class InventoryManager : MonoBehaviour
         _rowHeight = inventoryRow.GetRowHeight();
         _rowWidth=inventoryRow.GetRowWidth();
         _scrollRectSize = scrollRect.GetComponent<RectTransform>().rect.height;
+        
         VisibleRows = Mathf.FloorToInt(_scrollRectSize / (_rowHeight + ItemSpacing))+ BufferRows;
-        Debug.Log(_scrollRectSize+ " "+_rowHeight);
+
         SetContentHeight();
         ResizeScrollViewToFitRow();
         inventoryRow.SetRowHeight(ItemHeight-ItemSpacing); 
